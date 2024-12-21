@@ -1,0 +1,31 @@
+package org.example.telegramtestsmore.service.player;
+
+import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.example.telegramtestsmore.entity.PlayerTag;
+import org.example.telegramtestsmore.repository.PlayerRepository;
+import org.example.telegramtestsmore.service.message.SendMessageBot;
+import org.springframework.stereotype.Service;
+
+@Service
+@RequiredArgsConstructor
+public class ResultAllPlayers {
+    private final PlayerRepository playerRepository;
+    private final SendMessageBot sendMessageBot;
+
+    public List allPlayers(long chatId, Integer messageThreadId) {
+        int count = 1;
+        StringBuilder answer = new StringBuilder();
+        for (PlayerTag player : playerRepository.findAll()) {
+            answer.append(count)
+                .append(" ")
+                .append(player.getTag())
+                .append("||")
+                .append(player.getNikename())
+                .append("\n");
+            count++;
+        }
+        return sendMessageBot.sendMessage(chatId, messageThreadId, answer.toString());
+
+    }
+}
