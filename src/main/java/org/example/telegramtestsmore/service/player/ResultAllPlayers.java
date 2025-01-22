@@ -14,16 +14,18 @@ public class ResultAllPlayers {
     private final SendMessageBot sendMessageBot;
 
     public List allPlayers(long chatId, Integer messageThreadId) {
-        int count = 1;
+        int countplayer = 1;
         StringBuilder answer = new StringBuilder();
         for (PlayerTag player : playerRepository.findAll()) {
-            answer.append(count)
+            answer.append(countplayer)
                 .append(" ")
                 .append(player.getTag())
                 .append("||")
                 .append(player.getNikename())
+                .append("||")
+                .append(player.isActive() ? "Активен" : "В запасе")
                 .append("\n");
-            count++;
+            countplayer++;
         }
         return sendMessageBot.sendMessage(chatId, messageThreadId, answer.toString());
 

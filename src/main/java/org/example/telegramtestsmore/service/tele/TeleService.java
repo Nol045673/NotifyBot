@@ -21,15 +21,6 @@ public class TeleService extends TelegramLongPollingBot {
     private final UpdateReceivedService updateReceivedService;
     private final BotConfig config; // Например, @my_channel
 
-//    public TeleService(@Lazy MessageService messageService, @Lazy PlayerService playerService,
-//                       @Lazy WarService warService, PlayerRepository playerRepository, BotConfig config) {
-//        this.messageService = messageService;
-//        this.playerService = playerService;
-//        this.warService = warService;
-//        this.playerRepository = playerRepository;
-//        this.config = config;
-//    }
-
     @Override
     public void onUpdateReceived(Update update) {
         try {

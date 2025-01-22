@@ -16,21 +16,15 @@ public class SetActive {
     private final SendMessageBot sendMessageBot;
     private final PlayerRepository playerRepository;
 
-    public List<Object> setActive(long chatId, Integer messageThreadId, String tag, List<MessageEntity> entity) {
-        return activeChen(chatId, messageThreadId, createTag.createTag(tag, entity));
-    }
-
-    private List<Object> activeChen(Long chatId, Integer messageThreadId, String tag) {
-        List<Object> operation = new ArrayList<>();
-        PlayerTag playerTag = playerRepository.findByTag(tag);
+    public List setActive(long chatId, Integer messageThreadId, String tag, List<MessageEntity> entity) {
+        PlayerTag playerTag = playerRepository.findByTag(createTag.createTag(tag, entity));
         if (playerTag.isActive()) {
             playerRepository.save(new PlayerTag(playerTag.getTag(), playerTag.getNikename(), false));
-            operation.add(sendMessageBot.sendMessage(chatId, messageThreadId, "Игрока отправили в запас"));
+            return sendMessageBot.sendMessage(chatId, messageThreadId, "Игрока отправили в запас");
         }
         else {
             playerRepository.save(new PlayerTag(playerTag.getTag(), playerTag.getNikename(), true));
-            operation.add(sendMessageBot.sendMessage(chatId, messageThreadId, "Игрок вышел из запаса"));
+            return sendMessageBot.sendMessage(chatId, messageThreadId, "Игрок вышел из запаса");
         }
-        return operation;
     }
 }
