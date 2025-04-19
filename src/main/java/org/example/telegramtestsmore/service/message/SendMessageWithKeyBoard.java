@@ -1,6 +1,7 @@
 package org.example.telegramtestsmore.service.message;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import org.example.telegramtestsmore.entity.PlayerTag;
@@ -38,7 +39,7 @@ public class SendMessageWithKeyBoard<T> {
                 playersnames.add(playerTag.getNikename());
             }
         }
-
+        Collections.sort(playersnames);
         List<List<InlineKeyboardButton>> rows = new ArrayList<>();
         int rowscount = 0;
         Iterator<String> iterator = playersnames.iterator();
