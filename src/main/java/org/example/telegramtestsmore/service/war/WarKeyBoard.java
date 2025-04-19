@@ -56,7 +56,7 @@ public class WarKeyBoard {
                         if (firstmassege) {
                             firstmassege = false;
                             operation.add(sendMessageBot.sendMessage(chatId, messageThreadId,
-                                "Игрок: " +
+                                "Игрок " +
                                     playerRepository.findByTag("@" + update.getCallbackQuery().getFrom().getUserName()).getNikename() +
                                     " вызвал на войну! " +
                                     "Дата: " +
