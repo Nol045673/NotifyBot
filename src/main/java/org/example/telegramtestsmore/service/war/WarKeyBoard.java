@@ -79,7 +79,8 @@ public class WarKeyBoard {
                         userAnswers.remove(last);
                         orderfight.remove(last);
                         String text = "Вы выбрали: " + String.join(", ", userAnswers);
-                        operation.add(updateMessageWithKeyBoard.updateMessageWithKeyBoard(chatId, messageId, text, sendMessageWithKeyBoard.createInlineKeyboard(allnames)));
+                        operation.add(updateMessageWithKeyBoard.updateMessageWithKeyBoard(chatId, messageId, text,
+                                    sendMessageWithKeyBoard.createInlineKeyboard(allnames), orderfight));
                     } else {
                         operation.add(sendMessageBot.sendMessage(chatId, messageThreadId, "Некого убирать!"));
                     }
@@ -89,7 +90,8 @@ public class WarKeyBoard {
                     userAnswers.add(callbackData);
                     orderfight.add(callbackData);
                     String text = "Вы выбрали: " + String.join(", ", userAnswers);
-                    operation.add(updateMessageWithKeyBoard.updateMessageWithKeyBoard(chatId, messageId, text, sendMessageWithKeyBoard.createInlineKeyboard(allnames)));
+                    operation.add(updateMessageWithKeyBoard.updateMessageWithKeyBoard(chatId, messageId, text,
+                                  sendMessageWithKeyBoard.createInlineKeyboard(allnames), orderfight));
                 }
             }
         } catch (Exception e) {
